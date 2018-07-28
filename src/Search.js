@@ -32,7 +32,7 @@ class Search extends React.Component {
               <ol className="books-grid">
                 {this.state.books && this.state.books.map(book => {
                     return (
-                    <Book key={book.id} book={book} updateBookShelf={this.props.updateBookShelf} shelf='none' />
+                    <Book key={book.id} book={book} updateBookShelf={this.props.updateBookShelf} shelf={this.props.getBookShelf(book.id)} />
                     )
                 })}
               </ol>

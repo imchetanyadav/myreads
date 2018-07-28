@@ -9,6 +9,7 @@ class BooksApp extends React.Component {
   constructor(props) {
     super(props);
     this.updateBookShelf = this.updateBookShelf.bind(this);
+    this.getBookShelf = this.getBookShelf.bind(this);
   }
   state = {
     books: null
@@ -37,6 +38,10 @@ class BooksApp extends React.Component {
       }
     });
   }
+  getBookShelf = id => {
+    const isBookExists = this.state.books.find( book => book.id === id);
+    return isBookExists ? isBookExists.shelf : 'none'; 
+  }
   render() {
     return (
       <div className="app">
@@ -44,7 +49,7 @@ class BooksApp extends React.Component {
           <Dashboard books={this.state.books} updateBookShelf={this.updateBookShelf} />
         )} />
         <Route path="/search" render={() => (
-          <Search updateBookShelf={this.updateBookShelf} />
+          <Search updateBookShelf={this.updateBookShelf} getBookShelf={this.getBookShelf} />
         )} />
       </div>
     )
