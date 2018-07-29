@@ -15,9 +15,14 @@ class Search extends React.Component {
 
     // Fetch books based on search query
     handleSearchInputChange = event => {
-        BooksAPI.search(event.target.value).then(data => {
-            this.setState({ books: data});
-        });
+        if(!event.target.value){
+            this.setState({ books: null});
+        }
+        else {
+            BooksAPI.search(event.target.value).then(data => {
+                this.setState({ books: data});
+            });
+        }
     }
 
     render() {
