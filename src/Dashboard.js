@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Book from './Book'
 import './App.css'
 
-const Dashboard = () => (
+const Dashboard = (props) => (
     <div className="list-books">
         <div className="list-books-title">
             <h1>MyReads</h1>
@@ -14,11 +14,11 @@ const Dashboard = () => (
                     <h2 className="bookshelf-title">Currently Reading</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                        {this.props.books && this.props.books.filter(book => {
+                        {props.books && props.books.filter(book => {
                             return book.shelf==="currentlyReading" ? true : false;
                         }).map(book => {
                             return (
-                            <Book key={book.id} book={book} updateBookShelf={this.props.updateBookShelf} shelf='currentlyReading' />
+                            <Book key={book.id} book={book} updateBookShelf={props.updateBookShelf} shelf='currentlyReading' />
                             )
                         })}
                         </ol>
@@ -28,11 +28,11 @@ const Dashboard = () => (
                     <h2 className="bookshelf-title">Want to Read</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                        {this.props.books && this.props.books.filter(book => {
+                        {props.books && props.books.filter(book => {
                             return book.shelf==="wantToRead" ? true : false;
                         }).map(book => {
                             return (
-                            <Book key={book.id} book={book} updateBookShelf={this.props.updateBookShelf} shelf='wantToRead' />
+                            <Book key={book.id} book={book} updateBookShelf={props.updateBookShelf} shelf='wantToRead' />
                             )
                         })}
                         </ol>
@@ -42,11 +42,11 @@ const Dashboard = () => (
                     <h2 className="bookshelf-title">Read</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                        {this.props.books && this.props.books.filter(book => {
+                        {props.books && props.books.filter(book => {
                             return book.shelf==="read" ? true : false;
                         }).map(book => {
                             return (
-                            <Book key={book.id} book={book} updateBookShelf={this.props.updateBookShelf} shelf='read' />
+                            <Book key={book.id} book={book} updateBookShelf={props.updateBookShelf} shelf='read' />
                             )
                         })}
                         </ol>
