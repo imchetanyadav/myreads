@@ -20,8 +20,8 @@ class Search extends React.Component {
         }
         else {
             BooksAPI.search(event.target.value).then(data => {
-                this.setState({ books: data});
-            });
+                data.length ? this.setState({ books: data}) : this.setState({ books: null});
+            })
         }
     }
 
