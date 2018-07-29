@@ -5,7 +5,7 @@ const Book = (props) => (
     <li>
         <div className="book">
             <div className="book-top">
-                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${props.book.imageLinks.smallThumbnail})` }}></div>
+                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: props.book.imageLinks ? `url(${props.book.imageLinks.smallThumbnail})`: 'none' }}></div>
                 <div className="book-shelf-changer">
                     <select defaultValue={props.shelf} onChange={event => props.updateBookShelf(props.book, event.target.value)}>
                         <option value="move" disabled>Move to...</option>
