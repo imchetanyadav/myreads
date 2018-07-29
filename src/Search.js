@@ -5,24 +5,26 @@ import Book from './Book'
 import './App.css'
 
 class Search extends React.Component {
+    // Store data of books on search page
+    state = { books: null }
+
     constructor(props) {
         super(props);
         this.handleSearchInputChange = this.handleSearchInputChange.bind(this);
     }
-    state = {
-      books: null
-    }
 
+    // Fetch books based on search query
     handleSearchInputChange = event => {
         BooksAPI.search(event.target.value).then(data => {
             this.setState({ books: data});
         });
     }
+
     render() {
         return (
             <div className="search-books">
             <div className="search-books-bar">
-              <Link to='/' className="close-search">Close</Link>
+              <Link to="/" className="close-search">Close</Link>
 
               <div className="search-books-input-wrapper">
                 <input type="text" placeholder="Search by title or author" onChange={this.handleSearchInputChange} />

@@ -3,23 +3,25 @@ import * as BooksAPI from './BooksAPI'
 import { Route } from 'react-router-dom'
 import Dashboard from './Dashboard'
 import Search from './Search'
-import './App.css'
 
 class BooksApp extends React.Component {
+  // Store data of books on dashbard page
+  state = { books: null }
+
   constructor(props) {
     super(props);
     this.updateBookShelf = this.updateBookShelf.bind(this);
     this.getBookShelf = this.getBookShelf.bind(this);
   }
-  state = {
-    books: null
-  }
 
   componentDidMount() {
+    // Fetch all book added to shelf and set them books state
     BooksAPI.getAll().then(data => {
       this.setState({ books: data});
     });
   }
+
+  // Update books data whenever shelf of a book is changed
   updateBookShelf = (selectedBook, shelf) => {
     BooksAPI.update(selectedBook, shelf).then(data => {
       const isBookExists = this.state.books.find( book => book.id === selectedBook.id );
@@ -38,10 +40,13 @@ class BooksApp extends React.Component {
       }
     });
   }
+
+  // Find shelf of a book from it's id
   getBookShelf = id => {
     const isBookExists = this.state.books.find( book => book.id === id);
     return isBookExists ? isBookExists.shelf : 'none'; 
   }
+
   render() {
     return (
       <div className="app">
@@ -56,4 +61,4 @@ class BooksApp extends React.Component {
   }
 }
 
-export default BooksApp
+export default BooksApp;
